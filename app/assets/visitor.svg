@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <!-- Un rayo del sol de Vergina -->
+    <polygon id="ray" points="32,7 34.2,25 29.8,25" fill="#a9a395"/>
+  </defs>
+  <circle cx="32" cy="32" r="31" fill="#121726" stroke="#a9a395" stroke-width="2"/>
+  <g>
+    <use href="#ray"/>
+    <use href="#ray" transform="rotate(45 32 32)"/>
+    <use href="#ray" transform="rotate(90 32 32)"/>
+    <use href="#ray" transform="rotate(135 32 32)"/>
+    <use href="#ray" transform="rotate(180 32 32)"/>
+    <use href="#ray" transform="rotate(225 32 32)"/>
+    <use href="#ray" transform="rotate(270 32 32)"/>
+    <use href="#ray" transform="rotate(315 32 32)"/>
+  </g>
+  <circle cx="32" cy="32" r="5.5" fill="#a9a395"/>
+</svg>

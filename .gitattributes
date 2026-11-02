@@ -1,0 +1,7 @@
+# Texto con saltos de línea LF en el repositorio (Streamlit Cloud corre en Linux).
+* text=auto eol=lf
+
+# Índice vectorial: binario, Git no debe convertirlo nunca.
+chroma_db/** binary
+*.sqlite3 binary
+*.bin binary

@@ -1,0 +1,26 @@
+# Dependencias de la aplicación (las que instala Streamlit Cloud).
+# Versiones fijadas: son las probadas. El índice vectorial incluido en chroma_db/ se
+# generó con chromadb 1.5.9, así que conviene no cambiarla sin reconstruirlo.
+# Para el notebook: pip install -r requirements-notebook.txt
+
+# LLM y embeddings (Google Gemini)
+langchain-google-genai==4.4.2
+google-genai==2.34.0
+
+# Agente y orquestación
+langchain-core==1.7.1
+langgraph==1.2.18
+langgraph-checkpoint==4.3.1
+
+# Base de conocimiento vectorial
+chromadb==1.5.9
+langchain-chroma==1.1.0
+langchain-text-splitters==1.1.3
+langchain-community==0.4.2   # PyPDFLoader (soporte de PDFs en data/)
+pypdf==6.21.4
+
+# Configuración
+python-dotenv==1.2.4
+
+# Interfaz web
+streamlit==1.66.1

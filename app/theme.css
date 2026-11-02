@@ -1,0 +1,308 @@
+/*
+ * Estilo editorial, como un libro de museo: tipografía de libro (Cormorant SC + EB Garamond),
+ * latón envejecido y terracota de cerámica griega sobre un cielo nocturno con las
+ * constelaciones del zodiaco. Bordes finos, esquinas casi rectas y movimiento mínimo.
+ */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+SC:wght@500;600&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap');
+
+:root {
+  --night: #0b0e18;
+  --night-2: #121726;
+  --ivory: #e8e0cc;
+  --ivory-dim: #b8ae97;
+  --brass: #b99b5e;
+  --brass-soft: rgba(185, 155, 94, 0.38);
+  --brass-faint: rgba(185, 155, 94, 0.16);
+  --terracotta: #b8603a;
+  --display: 'Cormorant SC', Georgia, serif;
+  --text: 'EB Garamond', Georgia, serif;
+}
+
+/* ── Cielo: capa fija detrás de todo, con dos campos de estrellas que titilan y las
+   constelaciones del zodiaco (--zodiac lo inyecta components.py como data URI) ── */
+.stApp { background-color: var(--night); }
+[data-testid="stAppViewContainer"], [data-testid="stMain"], .main {
+  background: transparent !important;
+}
+.stApp::before,
+.stApp::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+.stApp::before {
+  background-image:
+    var(--zodiac),
+    radial-gradient(1.4px 1.4px at 23px 41px, #fff, transparent),
+    radial-gradient(1px 1px at 131px 87px, #f3e7c8, transparent),
+    radial-gradient(1.8px 1.8px at 211px 163px, #fff, transparent),
+    radial-gradient(1px 1px at 297px 31px, #fff, transparent),
+    radial-gradient(1.2px 1.2px at 359px 241px, #f3e7c8, transparent),
+    radial-gradient(1px 1px at 71px 263px, #fff, transparent);
+  background-size: cover, 400px 300px, 400px 300px, 400px 300px, 400px 300px, 400px 300px, 400px 300px;
+  background-repeat: no-repeat, repeat, repeat, repeat, repeat, repeat, repeat;
+  background-position: center, 0 0, 0 0, 0 0, 0 0, 0 0, 0 0;
+  opacity: 0.95;
+}
+.stApp::after {
+  background-image:
+    radial-gradient(1px 1px at 61px 141px, #fff, transparent),
+    radial-gradient(1.6px 1.6px at 251px 21px, #fff, transparent),
+    radial-gradient(1px 1px at 341px 121px, #f3e7c8, transparent),
+    radial-gradient(1.2px 1.2px at 171px 231px, #fff, transparent);
+  background-size: 370px 290px;
+  animation: twinkle 8s ease-in-out infinite alternate;
+}
+@keyframes twinkle { from { opacity: 0.25; } to { opacity: 0.85; } }
+[data-testid="stHeader"] { background: var(--night); border-bottom: 1px solid var(--brass-faint); }
+[data-testid="stMain"], [data-testid="stSidebar"] { position: relative; z-index: 1; }
+
+/* ── Tipografía ──────────────────────────────────────────────────────────── */
+html, body, .stApp, .stMarkdown, p, li, dd, label, button {
+  font-family: var(--text);
+}
+.stMarkdown p, .stMarkdown li { font-size: 1.12rem; line-height: 1.6; color: var(--ivory); }
+h1, h2, h3, h4 { font-family: var(--display) !important; font-weight: 600; letter-spacing: 0.02em; }
+a { color: var(--brass) !important; }
+
+/* ── Cabecera ────────────────────────────────────────────────────────────── */
+.hero { text-align: center; padding: 1rem 0 0; }
+.hero-greek {
+  font-family: var(--display);
+  font-size: 0.95rem;
+  letter-spacing: 0.35em;
+  color: var(--ivory-dim);
+}
+.hero-title {
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: clamp(2.6rem, 6vw, 3.8rem);
+  letter-spacing: 0.06em;
+  line-height: 1.1;
+  color: var(--brass);
+}
+.hero-subtitle { font-style: italic; color: var(--ivory-dim); font-size: 1.15rem; }
+.hero.compact .hero-greek { display: none; }
+.hero.compact .hero-title { font-size: clamp(1.9rem, 4vw, 2.5rem); }
+.hero.compact .hero-subtitle { font-size: 1.05rem; }
+
+/* Greca (meandro griego) como separador */
+.meander {
+  height: 12px;
+  margin: 0.9rem auto 1.3rem;
+  max-width: 300px;
+  opacity: 0.6;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='12' viewBox='0 0 24 12'%3E%3Cpath d='M0 11.5 H20.5 V0.5 H3.5 V8 H14 V4 H8.5' fill='none' stroke='%23b99b5e' stroke-width='1.1'/%3E%3C/svg%3E");
+  background-repeat: repeat-x;
+  background-position: center;
+}
+
+/* Párrafo de presentación centrado. Streamlit aplica sus propios márgenes a los <p>
+   (y elimina los <div> envolventes), así que hay que forzar margin auto. */
+.intro {
+  text-align: center !important;
+  font-size: 1.2rem !important;
+  line-height: 1.6;
+  color: var(--ivory) !important;
+  max-width: 640px;
+  margin: 0 auto 1.2rem auto !important;
+}
+.section-title {
+  text-align: center;
+  font-family: var(--display);
+  color: var(--brass);
+  letter-spacing: 0.12em;
+  font-size: 1.05rem;
+  margin: 1.6rem 0 0.9rem;
+}
+.section-title::before, .section-title::after {
+  content: "";
+  display: inline-block;
+  width: 2.2rem;
+  height: 1px;
+  background: var(--brass-soft);
+  vertical-align: middle;
+  margin: 0 0.8rem;
+}
+
+/* ── Anchos ──────────────────────────────────────────────────────────────── */
+.block-container { max-width: 1240px; }
+[class*="st-key-narrow"] { max-width: 880px; margin: 0 auto; }
+[data-testid="stBottomBlockContainer"] { max-width: 880px; margin: 0 auto; background: transparent; }
+[data-testid="stBottom"] > div { background: linear-gradient(transparent, var(--night) 35%); }
+
+/* ── Botones: sobrios, borde fino ────────────────────────────────────────── */
+.stButton button {
+  border-radius: 3px;
+  border: 1px solid var(--brass-soft);
+  background: var(--night);
+  color: var(--ivory);
+  transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+.stButton button:hover { border-color: var(--brass); background: #15140f; color: var(--ivory); }
+.st-key-examples button,
+.st-key-character-questions button {
+  justify-content: flex-start;
+  text-align: left;
+  min-height: 3.1rem;
+}
+.st-key-examples button p,
+.st-key-character-questions button p { font-size: 1.05rem; }
+
+/* Panteón: medallón con monograma (::before), nombre y nombre griego (::after).
+   El contenido de cada personaje lo genera components.pantheon_css(). */
+.st-key-pantheon button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 1.1rem 0.5rem 0.9rem;
+  min-height: 9.2rem;
+}
+.st-key-pantheon button::before {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.4rem;
+  height: 3.4rem;
+  border-radius: 50%;
+  border: 1px solid var(--brass);
+  outline: 1px solid var(--brass-faint);
+  outline-offset: 3px;
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: 1.15rem;
+  color: var(--brass);
+}
+.st-key-pantheon button p { font-family: var(--display) !important; font-size: 1.2rem !important; margin: 0; }
+.st-key-pantheon button::after { font-style: italic; font-size: 0.9rem; color: var(--ivory-dim); }
+.st-key-pantheon button:hover::before { border-color: var(--terracotta); color: var(--terracotta); }
+
+/* ── Tres tipos de fuente ────────────────────────────────────────────────── */
+.kind-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; margin-bottom: 2.2rem; }
+@media (max-width: 640px) { .kind-grid { grid-template-columns: 1fr; } }
+.kind-card { text-align: center; border-top: 1px solid var(--brass-soft); padding: 0.9rem 0.6rem 0; }
+.kind-numeral { font-family: var(--display); font-size: 1.7rem; color: var(--terracotta); line-height: 1; }
+.kind-name { font-family: var(--display); font-size: 1.2rem; color: var(--ivory); margin: 0.35rem 0 0.15rem; }
+.kind-summary { color: var(--ivory); }
+.kind-works { color: var(--ivory-dim); font-style: italic; font-size: 0.95rem; margin-top: 0.2rem; }
+
+/* ── Chat ────────────────────────────────────────────────────────────────── */
+[data-testid="stChatMessage"] {
+  background: var(--night);
+  border: 1px solid var(--brass-faint);
+  border-radius: 3px;
+}
+[data-testid="stChatInput"] { border-radius: 3px; }
+[data-testid="stChatInput"] textarea { font-family: var(--text); font-size: 1.1rem; }
+.search-query { font-size: 0.98rem; color: var(--ivory-dim); font-style: italic; margin-top: 0.4rem; }
+.search-query b { color: var(--ivory); font-weight: 500; font-style: normal; }
+
+/* ── Fuentes bajo cada respuesta ─────────────────────────────────────────── */
+.source-card { border-left: 2px solid var(--brass-soft); padding: 0.2rem 0 0.2rem 0.9rem; margin: 0.9rem 0; }
+.source-head { display: flex; justify-content: space-between; align-items: baseline; gap: 0.6rem; flex-wrap: wrap; }
+.source-card a.source-title, .source-title {
+  font-family: var(--display);
+  font-size: 1.08rem;
+  color: var(--ivory) !important;
+  text-decoration: none !important;
+}
+.source-card a.source-title:hover { color: var(--brass) !important; }
+.source-meta { color: var(--ivory-dim); font-size: 0.88rem; white-space: nowrap; }
+.badge { font-style: italic; color: var(--terracotta); margin-right: 0.4rem; }
+.relevance { height: 1px; background: var(--brass-faint); margin: 0.35rem 0 0.45rem; }
+.relevance > span { display: block; height: 100%; background: var(--brass); }
+.source-excerpt { color: var(--ivory-dim); font-size: 1rem; line-height: 1.45; }
+.source-excerpt b { color: var(--ivory); font-weight: 500; }
+
+/* ── Ficha de personaje ──────────────────────────────────────────────────── */
+.profile-header { text-align: center; margin-top: 0.4rem; }
+.medallion-lg {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 5.2rem;
+  height: 5.2rem;
+  border-radius: 50%;
+  border: 1px solid var(--brass);
+  outline: 1px solid var(--brass-faint);
+  outline-offset: 5px;
+  font-family: var(--display);
+  font-size: 1.7rem;
+  font-weight: 600;
+  color: var(--brass);
+  margin-bottom: 0.7rem;
+}
+.profile-kind { font-family: var(--display); letter-spacing: 0.14em; color: var(--terracotta); font-size: 0.95rem; }
+.profile-name { font-family: var(--display); font-size: clamp(2.3rem, 5vw, 3.2rem); color: var(--ivory); line-height: 1.1; }
+.profile-greek { font-style: italic; font-size: 1.3rem; color: var(--brass); }
+.profile-epithet { color: var(--ivory-dim); font-size: 1.1rem; margin-top: 0.2rem; }
+.fact-card { margin: 0.3rem 0 0; }
+.fact-card dt {
+  font-family: var(--display);
+  letter-spacing: 0.1em;
+  color: var(--brass);
+  font-size: 0.95rem;
+  border-top: 1px solid var(--brass-faint);
+  padding-top: 0.6rem;
+}
+.fact-card dd { margin: 0.15rem 0 0.9rem; color: var(--ivory); font-size: 1.1rem; line-height: 1.45; }
+.story-label { font-family: var(--display); letter-spacing: 0.1em; color: var(--brass); font-size: 0.95rem; margin: 0.3rem 0 0.4rem; }
+.chips { color: var(--ivory-dim); font-size: 0.92rem; margin-top: 0.2rem; }
+.chip { font-style: italic; color: var(--ivory); }
+.chip + .chip::before { content: " · "; font-style: normal; color: var(--ivory-dim); }
+
+/* ── Genealogía y fuentes ────────────────────────────────────────────────── */
+.legend { max-width: 860px; margin: 0 auto 0.8rem; text-align: center; color: var(--ivory-dim); font-size: 1.02rem; }
+.legend b { color: var(--ivory); font-weight: 500; }
+.source-list { list-style: none; padding: 0; margin: 0 0 1.4rem; }
+.source-list li {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  padding: 0.45rem 0.1rem;
+  border-bottom: 1px solid var(--brass-faint);
+}
+.source-list a { color: var(--ivory) !important; text-decoration: none !important; flex: 1; font-size: 1.08rem; }
+.source-list a:hover { color: var(--brass) !important; }
+.source-list .badge { margin: 0; }
+.source-list .chunks { color: var(--ivory-dim); font-size: 0.9rem; white-space: nowrap; }
+
+/* ── Barra lateral ───────────────────────────────────────────────────────── */
+[data-testid="stSidebar"] { background: #0d111d; border-right: 1px solid var(--brass-faint); }
+.sidebar-meta { color: var(--ivory-dim); font-size: 0.98rem; line-height: 1.5; margin-bottom: 0.6rem; }
+.stat-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.45rem; }
+.stat {
+  text-align: center;
+  border: 1px solid var(--brass-soft);
+  border-radius: 3px;
+  padding: 0.55rem 0.1rem 0.45rem;
+  background: var(--night);
+}
+.stat b { display: block; font-family: var(--display); font-weight: 600; font-size: 1.55rem; line-height: 1.1; color: var(--brass); }
+.stat small { display: block; color: var(--ivory-dim); font-size: 0.7rem; white-space: nowrap; }
+
+/* ── Centrado: títulos, pies, pestañas, enlaces y gráficos van centrados; los párrafos
+   largos de lectura (chat, presentaciones, explicaciones) se quedan alineados a la
+   izquierda, que es como se leen mejor. ───────────────────────────────────────── */
+[data-testid="stCaptionContainer"] { text-align: center; }
+[data-testid="stCaptionContainer"] p { color: var(--ivory-dim); font-size: 1.02rem; }
+[role="tablist"], [data-baseweb="tab-list"] { justify-content: center; }
+[data-testid="stPageLink"] { display: flex; justify-content: center; }
+[data-testid="stGraphVizChart"] { display: flex; justify-content: center; }
+[data-testid="stGraphVizChart"] svg { max-width: 100%; height: auto; }
+.st-key-character-questions button,
+.st-key-examples button { justify-content: center; text-align: center; }
+.story-label { text-align: left; }
+
+/* ── Velo de lectura: oscurece suavemente el cielo detrás del contenido, para que las
+   constelaciones brillen en los márgenes y no compitan con el texto. ─────────────── */
+[class*="st-key-narrow"], .hero, .legend, [data-testid="stTabs"] {
+  /* Velo uniforme con bordes difuminados (box-shadow): cubre el bloque entero
+     sea cual sea su altura, y se funde con el cielo en los bordes. */
+  background: rgba(11, 14, 24, 0.9);
+  box-shadow: 0 0 48px 36px rgba(11, 14, 24, 0.9);
+}
+[class*="st-key-narrow"] { padding: 0.4rem 1.2rem; }

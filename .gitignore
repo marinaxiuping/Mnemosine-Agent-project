@@ -1,0 +1,21 @@
+# Secretos: NUNCA al repositorio
+.env
+.streamlit/secrets.toml
+
+# Generados
+scripts/.cache/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# chroma_db/ SÍ se versiona a propósito: es el índice vectorial ya construido (6 MB).
+# En Streamlit Cloud el disco se borra en cada reinicio; sin él, la app tendría que
+# reindexar (~2 min y cuota de la API) cada vez que despierta.
+# Tras cambiar data/, reconstruirlo con knowledge_base.load_or_build(force_rebuild=True).
+
+# Entornos
+venv/
+.venv/
+
+# Material del curso (no es nuestro para publicarlo)
+Proyecto Final*.pdf

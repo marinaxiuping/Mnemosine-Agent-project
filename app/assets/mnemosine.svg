@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <ellipse id="leaf" cx="0" cy="0" rx="1.5" ry="3.4" fill="#b99b5e"/>
+  </defs>
+  <circle cx="32" cy="32" r="31" fill="#0b0e18" stroke="#b99b5e" stroke-width="2"/>
+  <circle cx="32" cy="32" r="26.5" fill="none" stroke="#b99b5e" stroke-opacity="0.4" stroke-width="0.8"/>
+  <!-- Corona de laurel: hojas tangentes a un arco a cada lado -->
+  <g opacity="0.9">
+    <use href="#leaf" transform="translate(21.2 13.4) rotate(-138)"/>
+    <use href="#leaf" transform="translate(15.1 18.8) rotate(-160)"/>
+    <use href="#leaf" transform="translate(11.3 26.1) rotate(-182)"/>
+    <use href="#leaf" transform="translate(10.6 34.2) rotate(156)"/>
+    <use href="#leaf" transform="translate(13.0 42.1) rotate(134)"/>
+    <use href="#leaf" transform="translate(18.2 48.5) rotate(112)"/>
+    <use href="#leaf" transform="translate(25.4 52.4) rotate(90)"/>
+    <use href="#leaf" transform="translate(42.8 13.4) rotate(-42)"/>
+    <use href="#leaf" transform="translate(48.9 18.8) rotate(-20)"/>
+    <use href="#leaf" transform="translate(52.7 26.1) rotate(2)"/>
+    <use href="#leaf" transform="translate(53.4 34.2) rotate(24)"/>
+    <use href="#leaf" transform="translate(51.0 42.1) rotate(46)"/>
+    <use href="#leaf" transform="translate(45.8 48.5) rotate(68)"/>
+    <use href="#leaf" transform="translate(38.6 52.4) rotate(90)"/>
+  </g>
+  <text x="32" y="40" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif"
+        font-size="23" font-weight="bold" fill="#b99b5e">Μ</text>
+</svg>
