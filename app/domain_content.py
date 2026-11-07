@@ -200,7 +200,7 @@ SOURCE_KINDS: tuple[SourceKind, ...] = (
 
 
 # ── Árboles genealógicos ─────────────────────────────────────────────────────
-# Solo parentescos. Las parejas son nodos propios («Zeus ⚭ Hera») de los que
+# Solo parentescos. Las parejas son nodos propios («Zeus y Hera») de los que
 # cuelgan los hijos; las versiones alternativas van en línea discontinua.
 
 _GOLD, _MARBLE, _MUTED, _NODE, _COUPLE = "#b99b5e", "#e8e0cc", "#9c937e", "#121726", "#221d14"
@@ -253,13 +253,13 @@ FAMILY_TREES: tuple[FamilyTree, ...] = (
             "    { rank=same; Caos; Gea; }\n"
             "    Caos -> Érebo; Caos -> Nix;\n"
             "    Gea -> Urano;\n"
-            + _couple("gea_urano", "Gea ⚭ Urano")
+            + _couple("gea_urano", "Gea y Urano")
             + _member("Gea", "gea_urano")
             + _member("Urano", "gea_urano")
             + "    gea_urano -> { Crono Rea Océano Jápeto Mnemósine Hiperión };\n"
             '    gea_urano -> cyclopes; cyclopes [label="Cíclopes"];\n'
             '    gea_urano -> hecatonchires; hecatonchires [label="Hecatónquiros"];\n'
-            + _couple("japeto_climene", "Jápeto ⚭ Clímene")
+            + _couple("japeto_climene", "Jápeto y Clímene")
             + _member("Jápeto", "japeto_climene")
             + "    japeto_climene -> { Prometeo Epimeteo Atlas };\n"
             + _alternative("Urano", "Afrodita", "según Hesíodo, de la espuma del mar")
@@ -270,7 +270,7 @@ FAMILY_TREES: tuple[FamilyTree, ...] = (
         description="Los seis hijos de Crono y Rea, que derrocaron a los titanes y se repartieron el mundo.",
         dot=_dot(
             "    Crono; Rea; { rank=same; Crono; Rea; }\n"
-            + _couple("crono_rea", "Crono ⚭ Rea")
+            + _couple("crono_rea", "Crono y Rea")
             + _member("Crono", "crono_rea") + _member("Rea", "crono_rea")
             + '    crono_rea -> hestia;   hestia   [label="Hestia\\nhogar"];\n'
             '    crono_rea -> demeter;  demeter  [label="Deméter\\nagricultura"];\n'
@@ -289,18 +289,18 @@ FAMILY_TREES: tuple[FamilyTree, ...] = (
                 "z_hera", "z_metis", "z_leto", "z_maya", "z_demeter",
                 "z_mnemosine", "z_semele", "z_danae", "z_alcmena", "z_dione",
             ))
-            + _couple("z_hera", "Zeus ⚭ Hera")
+            + _couple("z_hera", "Zeus y Hera")
             + "    z_hera -> { Ares Hebe };\n"
             + _alternative("z_hera", "Hefesto", "según Homero; en Hesíodo, solo de Hera")
-            + _couple("z_metis", "Zeus ⚭ Metis") + "    z_metis -> Atenea;\n"
-            + _couple("z_leto", "Zeus ⚭ Leto") + "    z_leto -> { Apolo Artemisa };\n"
-            + _couple("z_maya", "Zeus ⚭ Maya") + "    z_maya -> Hermes;\n"
-            + _couple("z_demeter", "Zeus ⚭ Deméter") + "    z_demeter -> Perséfone;\n"
-            + _couple("z_mnemosine", "Zeus ⚭ Mnemósine") + '    z_mnemosine -> musas; musas [label="Las nueve Musas"];\n'
-            + _couple("z_semele", "Zeus ⚭ Sémele") + "    z_semele -> Dioniso;\n"
-            + _couple("z_danae", "Zeus ⚭ Dánae") + "    z_danae -> Perseo;\n"
-            + _couple("z_alcmena", "Zeus ⚭ Alcmena") + "    z_alcmena -> Heracles;\n"
-            + _couple("z_dione", "Zeus ⚭ Dione")
+            + _couple("z_metis", "Zeus y Metis") + "    z_metis -> Atenea;\n"
+            + _couple("z_leto", "Zeus y Leto") + "    z_leto -> { Apolo Artemisa };\n"
+            + _couple("z_maya", "Zeus y Maya") + "    z_maya -> Hermes;\n"
+            + _couple("z_demeter", "Zeus y Deméter") + "    z_demeter -> Perséfone;\n"
+            + _couple("z_mnemosine", "Zeus y Mnemósine") + '    z_mnemosine -> musas; musas [label="Las nueve Musas"];\n'
+            + _couple("z_semele", "Zeus y Sémele") + "    z_semele -> Dioniso;\n"
+            + _couple("z_danae", "Zeus y Dánae") + "    z_danae -> Perseo;\n"
+            + _couple("z_alcmena", "Zeus y Alcmena") + "    z_alcmena -> Heracles;\n"
+            + _couple("z_dione", "Zeus y Dione")
             + _alternative("z_dione", "Afrodita", "según Homero"),
             rankdir="LR",
         ),
